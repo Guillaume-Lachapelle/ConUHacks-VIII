@@ -1,12 +1,23 @@
-<ng-container *ngIf="finishedFetching" style="height: 100vh">
-  <embed
-    type="text/html"
-    src="assets/montreal_map.html"
-    width="100%"
-    height="100%"
-  />
+<ng-container *ngIf="finishedFetching && finishedFetching2" style="width: 50vw; padding: 20px;">
+    <ng-container style="height: 20vh; margin-bottom: 20px;">
+        <embed
+        type="text/html"
+        src="assets/montreal_map.html"
+        width="100%"
+        height="100%"
+        />
+    </ng-container>
+    
+    <ng-container style="height: 20vh;">
+        <embed
+        type="text/html"
+        src="assets/montreal_map2.html"
+        width="100%"
+        height="100%"
+        />
+    </ng-container>
 </ng-container>
 
-<div class="example-loading-shade" *ngIf="!finishedFetching">
-  <mat-spinner *ngIf="!finishedFetching"></mat-spinner>
+<div class="example-loading-shade" *ngIf="!finishedFetching || !finishedFetching2">
+  <mat-spinner *ngIf="!finishedFetching || !finishedFetching2"></mat-spinner>
 </div>

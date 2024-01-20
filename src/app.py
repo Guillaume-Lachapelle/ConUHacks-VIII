@@ -58,5 +58,57 @@ def generate_map():
     map_montreal.save(html_file)
     return send_file(html_file, mimetype='text/html')
 
+@app.route('/generate_map2')
+def generate_map2():
+    print(os.getcwd())
+    # Load the two CSV files
+    df = pd.read_csv('assets/collisions_routieres.csv')
+
+
+    # Create a map centered around Montreal
+    map_montreal = folium.Map(location=[45.5017, -73.5673], zoom_start=12)
+
+    # Add points from the dataframe to the map using circle markers
+    for index, row in df.iterrows():
+    
+        if row['NB_VICTIMES_PIETON'] > 0:
+            if row['NB_VICTIMES_PIETON'] == 1:
+                color = 'yellow'
+            elif row['NB_VICTIMES_PIETON'] == 2:
+                color = 'orange'
+            else:
+                color = 'red'
+            
+            folium.CircleMarker(
+                location=[row['LOC_LAT'], row['LOC_LONG']],
+                radius=6,  # Adjust the size of the circle markers here
+                color=color,
+                fill=True,
+            ).add_to(map_montreal)
+        
+    # Add a legend to the map
+    legend_html = '''
+    <div style="position: fixed; 
+                bottom: 50px; 
+                right: 50px; 
+                width: auto; 
+                height: auto; 
+                border:2px solid grey; 
+                z-index:9999; 
+                font-size:14px;
+                background-color: white;">
+    <b>Legend</b><br>
+    <i class="fa fa-circle fa-1x" style="color:yellow"></i> 1 person<br>
+    <i class="fa fa-circle fa-1x" style="color:orange"></i> 2 people<br>
+    <i class="fa fa-circle fa-1x" style="color:red"></i> 3+ people
+    </div>
+    '''
+    map_montreal.get_root().html.add_child(folium.Element(legend_html))
+
+    # Save the map to an HTML file
+    html_file = 'assets/montreal_map2.html'
+    map_montreal.save(html_file)
+    return send_file(html_file, mimetype='text/html')
+
 if __name__ == '__main__':
     app.run()

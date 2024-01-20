@@ -19,4 +19,13 @@ export class ServiceService {
         })
       );
   }
+  generate_map2(): Observable<SafeHtml> {
+    return this.http
+      .get('http://localhost:5000/generate_map2', { responseType: 'text' })
+      .pipe(
+        map((data) => {
+          return this.sanitizer.bypassSecurityTrustHtml(data);
+        })
+      );
+  }
 }
