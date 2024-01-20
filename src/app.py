@@ -7,7 +7,6 @@ app = Flask(__name__)
 
 @app.route('/generate_map')
 def generate_map():
-    print(os.getcwd())
     # Load the two CSV files
     df1 = pd.read_csv('assets/feux-pietons.csv')
     df2 = pd.read_csv('assets/traverses-pietonnes-signal-sonore.csv')
