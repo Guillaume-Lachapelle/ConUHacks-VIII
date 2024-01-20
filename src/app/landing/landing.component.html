@@ -1,2 +1,12 @@
-<p>landing works!</p>
-<p>{{newdata.message}}</p>
+<ng-container *ngIf="finishedFetching" style="height: 100vh">
+  <embed
+    type="text/html"
+    src="assets/montreal_map.html"
+    width="100%"
+    height="100%"
+  />
+</ng-container>
+
+<div class="example-loading-shade" *ngIf="!finishedFetching">
+  <mat-spinner *ngIf="!finishedFetching"></mat-spinner>
+</div>

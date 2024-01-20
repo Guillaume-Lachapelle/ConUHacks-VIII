@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ServiceService } from '../services/service.service';
 
 @Component({
@@ -8,17 +7,21 @@ import { ServiceService } from '../services/service.service';
   styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent {
-  newdata: any;
+  finishedFetching = false;
 
   constructor(private _apiservice: ServiceService) {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.getData();
   }
 
-  getData() {
-    this._apiservice.getdata().subscribe((res) => {
-      this.newdata = res;
-    });
+  async getData() {
+    this._apiservice
+      .generate_map()
+      .pipe()
+      .subscribe((mapHtml) => {
+        console.log('your mom');
+        this.finishedFetching = true;
+      });
   }
 }
