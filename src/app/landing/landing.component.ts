@@ -20,7 +20,6 @@ export class LandingComponent {
       .generate_map()
       .pipe()
       .subscribe((mapHtml) => {
-        console.log('your mom');
         this.finishedFetching = true;
       });
   }
