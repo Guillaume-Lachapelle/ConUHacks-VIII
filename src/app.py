@@ -37,10 +37,18 @@ def generate_map():
         
     # Add a legend to the map
     legend_html = '''
-    <div style="position: fixed; bottom: 50px; left: 50px; width: 100px; height: 90px; border:2px solid grey; z-index:9999; font-size:14px;">
-    &nbsp;<b>Legend</b><br>
-    &nbsp;<i class="fa fa-circle fa-1x" style="color:blue"></i>&nbsp;With Audio Cue<br>
-    &nbsp;<i class="fa fa-circle fa-1x" style="color:red"></i>&nbsp;Without Audio Cue
+    <div style="position: fixed; 
+                bottom: 50px; 
+                right: 50px; 
+                width: auto; 
+                height: auto; 
+                border:2px solid grey; 
+                z-index:9999; 
+                font-size:14px;
+                background-color: white;">
+    <b>Legend</b><br>
+    <i class="fa fa-circle fa-1x" style="color:blue"></i> With Audio Cue<br>
+    <i class="fa fa-circle fa-1x" style="color:red"></i> Without Audio Cue
     </div>
     '''
     map_montreal.get_root().html.add_child(folium.Element(legend_html))
