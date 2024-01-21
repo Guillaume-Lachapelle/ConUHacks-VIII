@@ -44,6 +44,19 @@
         >
       </mat-button-toggle-group>
     </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Totals</mat-card-title>
+      </mat-card-header>
+      <div>
+        With Audio Cue <b style="color: #104a1c">{{ numbers1[0] }}</b>
+
+        <br />
+
+        Without Audio Cue <b style="color: #cf13bc">{{ numbers1[1] }}</b>
+      </div>
+    </mat-card>
   </mat-tab>
   <mat-tab label="Pedestrian-Vehicule Collisons">
     <div class="example-large-box mat-elevation-z4">
@@ -94,6 +107,25 @@
         </mat-button-toggle-group>
       </mat-card>
     </div>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Totals</mat-card-title>
+      </mat-card-header>
+      <div>
+        Colissions with 1 person
+        <b style="color: #e3e344">{{ numbers2[0] }}</b>
+
+        <br />
+
+        Colissions with 2 people
+        <b style="color: #fc9c0a">{{ numbers2[1] }}</b>
+
+        <br />
+
+        Collisions with 3 or more <b style="color: red">{{ numbers2[2] }}</b>
+      </div>
+    </mat-card>
   </mat-tab>
   <mat-tab label="Relation Audio Cues vs Collisions">
     <div class="example-large-box mat-elevation-z4">
@@ -141,6 +173,20 @@
         </mat-button-toggle-group>
       </mat-card>
     </div>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Totals</mat-card-title>
+      </mat-card-header>
+      <div>
+        Collisions with 2 or more people<b style="color: red">{{
+          numbers3[0]
+        }}</b>
+
+        <br />
+
+        Crossings with audio <b style="color: blue">{{ numbers3[1] }}</b>
+      </div>
+    </mat-card>
   </mat-tab>
 </mat-tab-group>
 

@@ -11,6 +11,9 @@ export class LandingComponent {
   finishedFetching2 = false;
   finishedFetching3 = false;
   lightTheme = true;
+  numbers1 = [] as any;
+  numbers2 = [] as any;
+  numbers3 = [] as any;
 
   constructor(private _apiservice: ServiceService) {}
 
@@ -25,6 +28,9 @@ export class LandingComponent {
       .generate_map()
       .pipe()
       .subscribe((mapHtml) => {
+        console.log(mapHtml);
+        let numbers = mapHtml.toString().split(',');
+        this.numbers1 = numbers;
         this.finishedFetching = true;
       });
   }
@@ -34,6 +40,8 @@ export class LandingComponent {
       .pipe()
       .subscribe((mapHtml) => {
         console.log(mapHtml);
+        let numbers = mapHtml.toString().split(',');
+        this.numbers2 = numbers;
         this.finishedFetching2 = true;
       });
   }
@@ -43,6 +51,8 @@ export class LandingComponent {
       .pipe()
       .subscribe((mapHtml) => {
         console.log(mapHtml);
+        let numbers = mapHtml.toString().split(',');
+        this.numbers3 = numbers;
         this.finishedFetching3 = true;
       });
   }
