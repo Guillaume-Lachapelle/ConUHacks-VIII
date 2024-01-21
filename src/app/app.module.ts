@@ -13,6 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent],
@@ -26,6 +27,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatCardModule,
     MatIconModule,
     MatButtonToggleModule,
+    DragDropModule,
   ],
   providers: [ServiceService],
   bootstrap: [AppComponent],

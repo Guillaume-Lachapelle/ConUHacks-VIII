@@ -17,9 +17,13 @@
   height: 80vh;
   width: 100%;
 }
+
+
+
 .example-card {
+  position:fixed;
+   cursor: move;
   max-width: 400px;
-  position: fixed;
   bottom: 50px;
   right: 50px;
   width: auto;
