@@ -9,12 +9,14 @@ import { ServiceService } from '../services/service.service';
 export class LandingComponent {
   finishedFetching = false;
   finishedFetching2 = false;
+  finishedFetching3 = false;
 
   constructor(private _apiservice: ServiceService) {}
 
   ngAfterViewInit() {
     this.getData();
     this.getData2();
+    this.getData3();
   }
 
   async getData() {
@@ -30,9 +32,17 @@ export class LandingComponent {
       .generate_map2()
       .pipe()
       .subscribe((mapHtml) => {
-        console.log('ym');
         console.log(mapHtml);
         this.finishedFetching2 = true;
+      });
+  }
+  async getData3() {
+    this._apiservice
+      .generate_map3()
+      .pipe()
+      .subscribe((mapHtml) => {
+        console.log(mapHtml);
+        this.finishedFetching3 = true;
       });
   }
 }
