@@ -1,0 +1,50 @@
+.example-small-box,
+.example-large-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border-radius: 8px;
+}
+
+.example-small-box {
+  height: 100px;
+  width: 100px;
+}
+
+.example-large-box {
+  height: 80vh;
+  width: 100%;
+}
+.example-card {
+  max-width: 400px;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: auto;
+  height: auto;
+  border: 2px solid grey;
+  z-index: 9999;
+  font-size: 14px;
+  background-color: white;
+   display: flex;
+   flex-flow: column;
+   padding-bottom: 10px;
+  mat-card-content {
+   
+    div {
+      display: flex;
+      align-items: center;
+     
+    }
+  }
+}
+
+mat-button-toggle-group {
+  margin-left: 12px;
+}
+
+mat-button-toggle-group{
+  width: max-content;
+}

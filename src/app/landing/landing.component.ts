@@ -10,6 +10,7 @@ export class LandingComponent {
   finishedFetching = false;
   finishedFetching2 = false;
   finishedFetching3 = false;
+  lightTheme = true;
 
   constructor(private _apiservice: ServiceService) {}
 
@@ -44,5 +45,9 @@ export class LandingComponent {
         console.log(mapHtml);
         this.finishedFetching3 = true;
       });
+  }
+
+  lightThemeToggle() {
+    this.lightTheme = !this.lightTheme;
   }
 }

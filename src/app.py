@@ -22,40 +22,27 @@ def generate_map():
 
     # Create a map centered around Montreal
     map_montreal = folium.Map(location=[45.5017, -73.5673], zoom_start=12)
-
+    
     # Add points from the dataframe to the map using circle markers
     for index, row in df.iterrows():
         folium.CircleMarker(
             location=[row['Latitude'], row['Longitude']],
             radius=6,  # Adjust the size of the circle markers here
-            color='blue' if row['audio_cue'] else 'red',
+            color='#104a1c' if row['audio_cue'] else '#cf13bc',
             fill=True,
-            # fill_color='blue' if row['audio_cue'] else 'red',
+            # fill_color='#338f4c' if row['audio_cue'] else '#822b3d',
             tooltip=f"Street: {row['RUE_1']} / {row['RUE_2']}",  # This will display when you hover over the marker
-        ).add_to(map_montreal)
-        
-    # Add a legend to the map
-    legend_html = '''
-    <div style="position: fixed; 
-                bottom: 50px; 
-                right: 50px; 
-                width: auto; 
-                height: auto; 
-                border:2px solid grey; 
-                z-index:9999; 
-                font-size:14px;
-                background-color: white;">
-    <b>Legend</b><br>
-    <i class="fa fa-circle fa-1x" style="color:blue"></i> With Audio Cue<br>
-    <i class="fa fa-circle fa-1x" style="color:red"></i> Without Audio Cue
-    </div>
-    '''
-    map_montreal.get_root().html.add_child(folium.Element(legend_html))
+        ).add_to(map_montreal)      
 
     # Save the map to an HTML file
     html_file = 'assets/AudioCUEMap.html'
     map_montreal.save(html_file)
-    return send_file(html_file, mimetype='text/html')
+    html_file_dark = 'assets/darkAudioCUEMap.html'
+    dark_mode = map_montreal
+    folium.TileLayer('cartodbdark_matter').add_to(dark_mode)
+    dark_mode.save(html_file_dark)
+    return 'Map generated!'
+
 
 @app.route('/generate_map2')
 def generate_map2():
@@ -71,9 +58,9 @@ def generate_map2():
     
         if row['NB_VICTIMES_PIETON'] > 0:
             if row['NB_VICTIMES_PIETON'] == 1:
-                color = 'yellow'
+                color = '#e3e344'
             elif row['NB_VICTIMES_PIETON'] == 2:
-                color = 'orange'
+                color = '#fc9c0a'
             else:
                 color = 'red'
             
@@ -84,29 +71,15 @@ def generate_map2():
                 fill=True,
             ).add_to(map_montreal)
         
-    # Add a legend to the map
-    legend_html = '''
-    <div style="position: fixed; 
-                bottom: 50px; 
-                right: 50px; 
-                width: auto; 
-                height: auto; 
-                border:2px solid grey; 
-                z-index:9999; 
-                font-size:14px;
-                background-color: white;">
-    <b>Legend</b><br>
-    <i class="fa fa-circle fa-1x" style="color:yellow"></i> 1 person<br>
-    <i class="fa fa-circle fa-1x" style="color:orange"></i> 2 people<br>
-    <i class="fa fa-circle fa-1x" style="color:red"></i> 3+ people
-    </div>
-    '''
-    map_montreal.get_root().html.add_child(folium.Element(legend_html))
 
     # Save the map to an HTML file
     html_file = 'assets/montreal_map2.html'
     map_montreal.save(html_file)
-    return send_file(html_file, mimetype='text/html')
+    html_file_dark = 'assets/dark_montreal_map2.html'
+    dark_mode = map_montreal
+    folium.TileLayer('cartodbdark_matter').add_to(dark_mode)
+    dark_mode.save(html_file_dark)
+    return 'Map generated!'
 
 @app.route('/generate_map3')
 def generate_map3():
@@ -120,12 +93,12 @@ def generate_map3():
     # Add points from the dataframe to the map using circle markers
     for index, row in df1.iterrows():
         if row['NB_VICTIMES_PIETON'] >= 2:
-            color = 'red'
+         
             
             folium.CircleMarker(
                 location=[row['LOC_LAT'], row['LOC_LONG']],
                 radius=6,  # Adjust the size of the circle markers here
-                color=color,
+                color = 'red',
                 fill=True,
             ).add_to(map_montreal)
             
@@ -137,28 +110,15 @@ def generate_map3():
             fill=True,
         ).add_to(map_montreal)
         
-    # Add a legend to the map
-    legend_html = '''
-    <div style="position: fixed; 
-                bottom: 50px; 
-                right: 50px; 
-                width: auto; 
-                height: auto; 
-                border:2px solid grey; 
-                z-index:9999; 
-                font-size:14px;
-                background-color: white;">
-    <b>Legend</b><br>
-    <i class="fa fa-circle fa-1x" style="color:red"></i> Collisions with 2 or more pedestrians<br>
-    <i class="fa fa-circle fa-1x" style="color:blue"></i> Pedestrian crossings with audible signals
-    </div>
-    '''
-    map_montreal.get_root().html.add_child(folium.Element(legend_html))
 
     # Save the map to an HTML file
     html_file = 'assets/montreal_map3.html'
     map_montreal.save(html_file)
-    return send_file(html_file, mimetype='text/html')
+    html_file_dark = 'assets/dark_montreal_map3.html'
+    dark_mode = map_montreal
+    folium.TileLayer('cartodbdark_matter').add_to(dark_mode)
+    dark_mode.save(html_file_dark)
+    return 'Map generated!'
 
 if __name__ == '__main__':
     app.run()

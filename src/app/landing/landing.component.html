@@ -1,23 +1,152 @@
-<ng-container *ngIf="finishedFetching && finishedFetching2" style="width: 50vw; padding: 20px;">
-    <ng-container style="height: 20vh; margin-bottom: 20px;">
-        <embed
+<mat-tab-group dynamicHeight>
+  <mat-tab label="Pedestrian Crossings With vs Without Audio Cues">
+    <div class="example-large-box mat-elevation-z4">
+      <embed
+        *ngIf="finishedFetching && lightTheme && finishedFetching2"
         type="text/html"
         src="assets/AudioCUEMap.html"
         width="100%"
         height="100%"
-        />
-    </ng-container>
-    
-    <ng-container style="height: 20vh;">
-        <embed
+      />
+      <embed
+        *ngIf="finishedFetching && !lightTheme && finishedFetching2"
+        type="text/html"
+        src="assets/darkAudioCUEMap.html"
+        width="100%"
+        height="100%"
+      />
+    </div>
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Legend</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <i class="fa fa-circle fa-1x"></i> With Audio Cue
+          <mat-icon matSuffix style="color: #104a1c">volume_up</mat-icon>
+        </div>
+
+        <div>
+          <i class="fa fa-circle fa-1x"></i> Without Audio Cue
+          <mat-icon matSuffix style="color: #cf13bc">volume_off</mat-icon>
+        </div>
+      </mat-card-content>
+      <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle (click)="lightThemeToggle()" *ngIf="lightTheme"
+          >Light</mat-button-toggle
+        >
+        <mat-button-toggle
+          (click)="lightThemeToggle()"
+          *ngIf="!lightTheme"
+          style="background-color: black; color: white"
+          >Dark</mat-button-toggle
+        >
+      </mat-button-toggle-group>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="Pedestrian-Vehicule Collisons">
+    <div class="example-large-box mat-elevation-z4">
+      <embed
+        *ngIf="finishedFetching && lightTheme && finishedFetching2"
         type="text/html"
         src="assets/montreal_map2.html"
         width="100%"
         height="100%"
-        />
-    </ng-container>
-</ng-container>
+      />
+      <embed
+        *ngIf="finishedFetching && !lightTheme && finishedFetching2"
+        type="text/html"
+        src="assets/dark_montreal_map2.html"
+        width="100%"
+        height="100%"
+      />
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>Legend</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div>
+            <i class="fa fa-circle fa-1x"></i> 1 person
+            <mat-icon matSuffix style="color: #e3e344">person_pin</mat-icon>
+          </div>
 
-<div class="example-loading-shade" *ngIf="!finishedFetching || !finishedFetching2">
+          <div>
+            <i class="fa fa-circle fa-1x"></i> 2 people
+            <mat-icon matSuffix style="color: #fc9c0a">person_pin</mat-icon>
+          </div>
+
+          <div>
+            <i class="fa fa-circle fa-1x"></i> 3+ people
+            <mat-icon matSuffix style="color: red">person_pin</mat-icon>
+          </div>
+        </mat-card-content>
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle (click)="lightThemeToggle()" *ngIf="lightTheme"
+            >Light</mat-button-toggle
+          >
+          <mat-button-toggle
+            (click)="lightThemeToggle()"
+            *ngIf="!lightTheme"
+            style="background-color: black; color: white"
+            >Dark</mat-button-toggle
+          >
+        </mat-button-toggle-group>
+      </mat-card>
+    </div>
+  </mat-tab>
+  <mat-tab label="Relation Audio Cues vs Collisions">
+    <div class="example-large-box mat-elevation-z4">
+      <embed
+        *ngIf="finishedFetching && lightTheme && finishedFetching2"
+        type="text/html"
+        src="assets/montreal_map3.html"
+        width="100%"
+        height="100%"
+      />
+      <embed
+        *ngIf="finishedFetching && !lightTheme && finishedFetching2"
+        type="text/html"
+        src="assets/dark_montreal_map3.html"
+        width="100%"
+        height="100%"
+      />
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>Legend</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div>
+            <i class="fa fa-circle fa-1x"></i> Collisions with 2 or more
+            pedestrians
+            <mat-icon matSuffix style="color: red">person_add</mat-icon>
+          </div>
+
+          <div>
+            <i class="fa fa-circle fa-1x"></i> Pedestrian crossings with audible
+            signals
+            <mat-icon matSuffix style="color: blue">volume_off</mat-icon>
+          </div>
+        </mat-card-content>
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle (click)="lightThemeToggle()" *ngIf="lightTheme"
+            >Light</mat-button-toggle
+          >
+          <mat-button-toggle
+            (click)="lightThemeToggle()"
+            *ngIf="!lightTheme"
+            style="background-color: black; color: white"
+            >Dark</mat-button-toggle
+          >
+        </mat-button-toggle-group>
+      </mat-card>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+<div
+  class="example-loading-shade"
+  *ngIf="!finishedFetching || !finishedFetching2"
+>
   <mat-spinner *ngIf="!finishedFetching || !finishedFetching2"></mat-spinner>
 </div>
