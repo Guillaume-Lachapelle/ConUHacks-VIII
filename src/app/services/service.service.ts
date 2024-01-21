@@ -15,7 +15,7 @@ export class ServiceService {
       .get('http://localhost:5000/generate_map', { responseType: 'text' })
       .pipe(
         map((data) => {
-          return this.sanitizer.bypassSecurityTrustHtml(data);
+          return data;
         })
       );
   }
@@ -24,7 +24,7 @@ export class ServiceService {
       .get('http://localhost:5000/generate_map2', { responseType: 'text' })
       .pipe(
         map((data) => {
-          return this.sanitizer.bypassSecurityTrustHtml(data);
+          return data;
         })
       );
   }
@@ -33,7 +33,7 @@ export class ServiceService {
       .get('http://localhost:5000/generate_map3', { responseType: 'text' })
       .pipe(
         map((data) => {
-          return this.sanitizer.bypassSecurityTrustHtml(data);
+          return data;
         })
       );
   }
