@@ -6,7 +6,7 @@ We were inspired by the global Vision Zero plan who's objective is to reduce ser
 ### What it does:
 This data visualization tool allows you to see the map of Montreal and the different relationships which can be analysed such as the Pedestrian Crossing With vs Without Audio Cues, Pedestrian-Vehicle Collisions and with further analysis the relationship between these two maps for any correlation.
 
-### How we build it:
+### How we built it:
  We used Angular for the front-end and this allows us we can switch between maps, and we used Python for the backend.
 
 
