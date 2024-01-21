@@ -47,7 +47,7 @@ def generate_map():
     dark_mode = map_montreal
     folium.TileLayer('cartodbdark_matter').add_to(dark_mode)
     dark_mode.save(html_file_dark)
-    return str(ng_feux_pietons) + ',' + str(nb_signal_sonore)
+    return str(nb_signal_sonore) + ',' + str(nb_feux_pietons)
 
 
 @app.route('/generate_map2')
