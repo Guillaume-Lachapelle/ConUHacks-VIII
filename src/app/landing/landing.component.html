@@ -1,4 +1,6 @@
+<img src="assets/download.png" alt="drw" style="width: 100px;">
 <mat-tab-group dynamicHeight>
+
   <mat-tab label="Pedestrian Crossings With vs Without Audio Cues">
     <div class="example-large-box mat-elevation-z4">
       <embed
@@ -178,7 +180,7 @@
         <mat-card-title>Totals</mat-card-title>
       </mat-card-header>
       <div>
-        Collisions with 2 or more people<b style="color: red">{{
+        Collisions with 2 or more people <b style="color: red">{{
           numbers3[0]
         }}</b>
 
@@ -194,5 +196,7 @@
   class="example-loading-shade"
   *ngIf="!finishedFetching || !finishedFetching2"
 >
-  <mat-spinner *ngIf="!finishedFetching || !finishedFetching2"></mat-spinner>
+  <div *ngIf="!finishedFetching || !finishedFetching2">
+    <img class="rotate" src="assets/download.png" alt="drw" style="width: 200px;">
+  </div>
 </div>
