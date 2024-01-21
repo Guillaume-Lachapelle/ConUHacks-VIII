@@ -23,8 +23,14 @@ def generate_map():
     # Create a map centered around Montreal
     map_montreal = folium.Map(location=[45.5017, -73.5673], zoom_start=12)
     
+    ng_feux_pietons = 0
+    nb_signal_sonore = 0
     # Add points from the dataframe to the map using circle markers
     for index, row in df.iterrows():
+        if row['audio_cue']:
+            nb_signal_sonore += 1
+        else:
+            ng_feux_pietons += 1
         folium.CircleMarker(
             location=[row['Latitude'], row['Longitude']],
             radius=6,  # Adjust the size of the circle markers here
@@ -41,7 +47,7 @@ def generate_map():
     dark_mode = map_montreal
     folium.TileLayer('cartodbdark_matter').add_to(dark_mode)
     dark_mode.save(html_file_dark)
-    return 'Map generated!'
+    return str(ng_feux_pietons) + ',' + str(nb_signal_sonore)
 
 
 @app.route('/generate_map2')
@@ -53,16 +59,22 @@ def generate_map2():
     # Create a map centered around Montreal
     map_montreal = folium.Map(location=[45.5017, -73.5673], zoom_start=12)
 
+    nb_collisions_yellow = 0
+    nb_collisions_orange = 0
+    nb_collisions_red = 0
     # Add points from the dataframe to the map using circle markers
     for index, row in df.iterrows():
     
         if row['NB_VICTIMES_PIETON'] > 0:
             if row['NB_VICTIMES_PIETON'] == 1:
                 color = '#e3e344'
+                nb_collisions_yellow += 1
             elif row['NB_VICTIMES_PIETON'] == 2:
                 color = '#fc9c0a'
+                nb_collisions_orange += 1
             else:
                 color = 'red'
+                nb_collisions_red += 1
             
             folium.CircleMarker(
                 location=[row['LOC_LAT'], row['LOC_LONG']],
@@ -79,7 +91,7 @@ def generate_map2():
     dark_mode = map_montreal
     folium.TileLayer('cartodbdark_matter').add_to(dark_mode)
     dark_mode.save(html_file_dark)
-    return 'Map generated!'
+    return str(nb_collisions_yellow) + ',' + str(nb_collisions_orange) + ',' + str(nb_collisions_red)
 
 @app.route('/generate_map3')
 def generate_map3():
@@ -90,11 +102,12 @@ def generate_map3():
     # Create a map centered around Montreal
     map_montreal = folium.Map(location=[45.5017, -73.5673], zoom_start=12)
 
+    pedestrian_collisions = 0
     # Add points from the dataframe to the map using circle markers
     for index, row in df1.iterrows():
         if row['NB_VICTIMES_PIETON'] >= 2:
          
-            
+            pedestrian_collisions += 1
             folium.CircleMarker(
                 location=[row['LOC_LAT'], row['LOC_LONG']],
                 radius=6,  # Adjust the size of the circle markers here
@@ -102,7 +115,9 @@ def generate_map3():
                 fill=True,
             ).add_to(map_montreal)
             
+    audio_signal_count = 0
     for index, row in df2.iterrows():
+        audio_signal_count += 1
         folium.CircleMarker(
             location=[row['Latitude'], row['Longitude']],
             radius=6,  # Adjust the size of the circle markers here
@@ -118,7 +133,7 @@ def generate_map3():
     dark_mode = map_montreal
     folium.TileLayer('cartodbdark_matter').add_to(dark_mode)
     dark_mode.save(html_file_dark)
-    return 'Map generated!'
+    return str(pedestrian_collisions) + ',' + str(audio_signal_count)
 
 if __name__ == '__main__':
     app.run()
